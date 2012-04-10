@@ -1,8 +1,21 @@
 # nginx-init-debian
 
-A nginx init script for debian-based distributions such as Ubuntu, Mint, Mepis, etc.
+Upstart & System V init scripts for debian-based distributions such as Ubuntu, Mint, Mepis, etc.
 
-## Installation
+
+### Upstart
+
+```sh
+git clone  git@github.com:hulihanapplications/nginx-init-debian.git
+cd nginx-init-debian
+sudo cp etc/init/nginx.conf /etc/init
+# Start Nginx
+sudo start nginx 
+```
+
+* By default, the script thinks nginx is in `/opt/nginx`. If your nginx configuration is different, edit `/etc/init/nginx.conf` and change it to the correct location.
+
+### System V
 
 ```sh
 git clone  git@github.com:hulihanapplications/nginx-init-debian.git
@@ -10,6 +23,8 @@ cd nginx-init-debian
 sudo cp etc/init.d/nginx /etc/init.d
 sudo chown root:root /etc/init.d/nginx
 sudo chmod 755 /etc/init.d/nginx
+# Start nginx 
+sudo /etc/init.d/nginx start
 ```
 
 * By default, the script thinks nginx is in `/opt/nginx`. If your nginx configuration is different, edit `/etc/init.d/nginx` and change it to the correct location:
@@ -18,22 +33,6 @@ sudo chmod 755 /etc/init.d/nginx
 DAEMON=/opt/nginx/sbin/nginx
 NGINX_CONF_FILE="/opt/nginx/conf/nginx.conf"
 ```
-
-
-## Usage
-
-```sh
-$ sudo /etc/init.d/nginx start
- * Starting Nginx Server...                                                                             [ OK ]
- 
-$ sudo /etc/init.d/nginx stop
- * Stopping Nginx Server...                                                                             [ OK ]
-
-$ sudo /etc/init.d/nginx restart
- * Stopping Nginx Server...                                                                             [ OK ]
- * Starting Nginx Server...                                                                             [ OK ]
-```
-
 
 ### License - MIT X11
 
@@ -56,6 +55,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Dave Hulihan &copy; 2012 - [Hulihan Applications](http://www.hulihanapplications.com) 
 
-### Kudos 
+### Credits
 
-This is a modified version of Jason Giedymin's [nginx-init-ubuntu](http://code.google.com/p/nginx-init-ubuntu/) script. 
+* [Big Rock Software's nginx upstart script](http://blog.bigrocksoftware.com/2011/01/07/rvm-nginx-passenger-rails-3/)
+* [Jason Giedymin's nginx-init-ubuntu script](http://code.google.com/p/nginx-init-ubuntu/) 
